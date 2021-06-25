@@ -54,7 +54,7 @@ class Cliente extends Resource
                 ->sortable()
                 ->rules('required', 'min:2', 'max:150'),
             Avatar::make()->maxWidth(50),
-            Text::make('Telefono')
+            Number::make('Telefono')
                 ->sortable()
                 ->rules('numeric'),
             Text::make('Email')

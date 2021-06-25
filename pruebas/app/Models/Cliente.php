@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    use HasFactory;
+    
+  use HasFactory;
+
+    protected $dates = [
+      'published_on',
+    ];
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
+

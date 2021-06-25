@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\BelongsTo;
 
 
 
@@ -33,7 +34,7 @@ class Cliente extends Resource
      * @var array
      */
     public static $search = [
-        'cedula', 'nombre', 'email'
+        'cedula', 'nombre', 'email', 'user_id',
     ];
 
     /**
@@ -50,10 +51,11 @@ class Cliente extends Resource
                 ->sortable()
                 ->creationRules('required', 'numeric')
                 ->updateRules('nullable', 'numeric'),
+            BelongsTo::make('User')->nullable(),
             Text::make('Nombre')
                 ->sortable()
                 ->rules('required', 'min:2', 'max:150'),
-            Avatar::make()->maxWidth(50),
+            Avatar::make('Foto')->maxWidth(50),
             Number::make('Telefono')
                 ->sortable()
                 ->rules('numeric'),

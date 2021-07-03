@@ -18,7 +18,8 @@ class Cliente extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function metodos() {
+    public function metodopagos() {
+      
       return $this->belongsToMany(MetodoPago::class);
   }
 }

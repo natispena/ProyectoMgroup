@@ -13,12 +13,11 @@ class CreateMetodoClienteTable extends Migration
      */
     public function up()
     {
-        Schema::create('metodo_cliente', function (Blueprint $table) {
-            $table->integer('metodo_id')->unsigned();
-            $table->integer('cliente_id')->unsigned();
+        Schema::create('cliente_metodo_pago', function (Blueprint $table) {
 
-            //$table->foreign('metodo_id')->references('id')->on('metodos');
-            //$table->foreign('cliente_id')->references('id')->on('clientes');
+            
+            $table->foreignId('metodo_pago_id')->constrained('metodo_pagos');
+            $table->foreignId('cliente_id')->constrained('clientes');
 
         });
     }

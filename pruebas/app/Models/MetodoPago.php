@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Clientes;
+use App\Models\Cliente;
 class MetodoPago extends Model
 {
     
@@ -16,6 +16,6 @@ class MetodoPago extends Model
   ];
 
   public function clientes() {
-    return $this->belongsToMany(Clientes::class, 'metodo_cliente', 'metodo_id', 'cliente_id');
+    return $this->belongsToMany(Cliente::class);
 }
 }

@@ -53,7 +53,6 @@ class Cliente extends Resource
                 ->creationRules('required', 'numeric')
                 ->updateRules('nullable', 'numeric'),
             BelongsTo::make('User')->nullable(),
-            BelongsTo::make('MetodoPago')->nullable(),
             Text::make('Nombre')
                 ->sortable()
                 ->rules('required', 'min:2', 'max:150'),
@@ -69,6 +68,7 @@ class Cliente extends Resource
             Text::make('direccion')
                 ->sortable()
                 ->rules('required','min:7', 'max:100'),
+
             BelongsToMany::make('MetodoPagos')
         ];
     }

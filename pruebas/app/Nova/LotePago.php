@@ -5,29 +5,25 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 
-
-
-class Cliente extends Resource
+class LotePago extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Cliente::class;
+    public static $model = \App\Models\LotePago::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'nombre';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -35,7 +31,7 @@ class Cliente extends Resource
      * @var array
      */
     public static $search = [
-        'cedula', 'nombre', 'email',
+        'id',
     ];
 
     /**
@@ -48,28 +44,19 @@ class Cliente extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Number::make('Cedula')
+            Number::make('Codigo')
                 ->sortable()
                 ->creationRules('required', 'numeric')
                 ->updateRules('nullable', 'numeric'),
             BelongsTo::make('User')->nullable(),
-            BelongsTo::make('MetodoPago')->nullable(),
-            Text::make('Nombre')
+            Number::make('TRM')
                 ->sortable()
-                ->rules('required', 'min:2', 'max:150'),
-            Avatar::make('Foto')->maxWidth(50),
-            
-            
-            Text::make('Email')
+                ->creationRules('required', 'numeric')
+                ->updateRules('nullable', 'numeric'),
+            Number::make('TRM_eur')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-            
-            Text::make('direccion')
-                ->sortable()
-                ->rules('required','min:7', 'max:100'),
-            BelongsToMany::make('MetodoPagos')
+                ->creationRules('required', 'numeric')
+                ->updateRules('nullable', 'numeric'),
         ];
     }
 

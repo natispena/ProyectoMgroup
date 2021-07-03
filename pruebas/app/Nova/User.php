@@ -30,7 +30,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'name', 'email',
     ];
 
     /**
@@ -60,7 +60,8 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
-            HasMany::make('Clientes')
+            HasMany::make('Clientes'),
+            HasMany::make('LotePagos')
         ];
     }
 

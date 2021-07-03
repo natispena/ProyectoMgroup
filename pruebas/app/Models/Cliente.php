@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\MetodoPago;
 
 class Cliente extends Model
 {
@@ -13,9 +15,11 @@ class Cliente extends Model
     protected $dates = [
       'published_on',
     ];
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
+    public function user(){
+        return $this->belongsTo(User::class);
     }
+    public function metodos() {
+      return $this->belongsToMany(MetodoPago::class);
+  }
 }
 

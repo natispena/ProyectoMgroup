@@ -22,6 +22,7 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
+            
             'nombre' => $this->faker->name(),
             'cedula' => $this-> faker->phoneNumber(),
             'foto' => $this->foto(),
@@ -29,7 +30,6 @@ class ClienteFactory extends Factory
             'direccion'=> $this-> faker->address(),
             'email' => $this->faker->unique()->safeEmail(),
             'user_id' => $this->user(),
-            
         ];
     }
     public function  foto()
@@ -42,5 +42,6 @@ class ClienteFactory extends Factory
         $user=["1","2","3","4","5","6","7","8","9","10"];
         return $user[mt_rand(0, count($user)-1)];
     }
+    
 
 }

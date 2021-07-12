@@ -21,16 +21,20 @@ class MetodoPagoFactory extends Factory
      */
     public function definition()
     {
+        $moneda= $this->moneda();
         return [
+            
             'moneda' => $this->moneda(),
             'titular' => $this->faker->name(),
             'documento'=> $this->documento(),
             'numero'=>$this-> faker->phoneNumber(),
-            'tipo' =>$this->tipo(),
+            'tipo' =>$this->tipo($moneda),
             'cuenta'=> $this-> faker->creditCardNumber(),
             'impuesto'=> $this-> faker->phoneNumber(),
             'costo'=> $this-> faker->phoneNumber(),
         ];
+        
+
     }
         public function cliente()
         {
@@ -41,12 +45,19 @@ class MetodoPagoFactory extends Factory
         {
             $moneda=["COP","UDS","EUR"];
             return $moneda[mt_rand(0, count($moneda)-1)];
+             
+            
         }
-        public function tipo()
+        public function tipo(string $moneda)
         {
-            $tipo=["Bancolombia","Cosmo","Paxum"];
+            
+            if ($moneda == "COP"){
+                return $tipo="Bancolombia";
+            }
+            else{
+            $tipo=["Cosmo","Paxum"];
             return $tipo[mt_rand(0, count($tipo)-1)];
-        
+            }
         }
         public function documento()
         {

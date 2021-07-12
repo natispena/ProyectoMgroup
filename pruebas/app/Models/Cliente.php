@@ -22,5 +22,9 @@ class Cliente extends Model
       
       return $this->belongsToMany(MetodoPago::class);
   }
+  public function pagos()
+    {
+        return $this->hasMany('App\Models\Pago');
+    }
 }
 

@@ -17,5 +17,11 @@ class MetodoPago extends Model
 
   public function clientes() {
     return $this->belongsToMany(Cliente::class);
-}
+  }
+  public function pagos()
+  {
+    return $this->hasMany('App\Models\Pago');
+  }
+
+
 }

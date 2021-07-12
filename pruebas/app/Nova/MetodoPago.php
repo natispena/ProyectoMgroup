@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 
 class MetodoPago extends Resource
 {
@@ -74,7 +75,8 @@ class MetodoPago extends Resource
                 ->sortable()
                 ->creationRules('required', 'numeric')
                 ->updateRules('nullable', 'numeric'),
-            BelongsToMany::make('Clientes')
+            BelongsToMany::make('Clientes'),
+            HasMany::make('Pagos')
         ];
     }
 

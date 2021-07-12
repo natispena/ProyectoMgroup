@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
-
+use Laravel\Nova\Fields\HasMany;
 
 
 class Cliente extends Resource
@@ -57,19 +57,17 @@ class Cliente extends Resource
                 ->sortable()
                 ->rules('required', 'min:2', 'max:150'),
             Avatar::make('Foto')->maxWidth(50),
-            
-            
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
-            
             Text::make('direccion')
                 ->sortable()
                 ->rules('required','min:7', 'max:100'),
 
-            BelongsToMany::make('MetodoPagos')
+            BelongsToMany::make('MetodoPagos'),
+            HasMany::make('Pagos')
         ];
     }
 

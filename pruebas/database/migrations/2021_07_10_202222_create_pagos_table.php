@@ -15,9 +15,9 @@ class CreatePagosTable extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->cliente_id();
-            $table->metodo_pagos_id();
-            $table->
+            $table->foreignId('cliente_id')->constrained('clientes');;
+            $table->foreignId('metodo_pago_id')->constrained('metodo_pagos');;
+            $table->string('valor');
             $table->timestamps();
         });
     }

@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
          \App\Models\Cliente::factory(10)->create();
          \App\Models\LotePago::factory(10)->create();
          \App\Models\MetodoPago::factory(3)->create();
+         \App\Models\Pago::factory(10)->create();
     }
 }
